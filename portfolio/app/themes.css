@@ -1,0 +1,229 @@
+/* Persistent navigation keeps the theme switch within reach in every section. */
+.navigation {
+  position: fixed;
+  background: #111210c9;
+}
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.theme-toggle {
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  color: var(--foreground);
+}
+.theme-toggle .show-in-dark,
+.theme-toggle .show-in-light {
+  align-items: center;
+  gap: 9px;
+  font-size: 10px;
+  letter-spacing: 0.6px;
+}
+.theme-toggle .show-in-dark {
+  display: inline-flex;
+}
+.theme-toggle .show-in-light {
+  display: none;
+}
+.light .theme-toggle .show-in-dark {
+  display: none;
+}
+.light .theme-toggle .show-in-light {
+  display: inline-flex;
+}
+.dark {
+  color-scheme: dark;
+}
+.light {
+  color-scheme: light;
+  --background: #f4f1e9;
+  --foreground: #25291f;
+  --primary: #75613a;
+  --primary-foreground: #fffdf7;
+  --popover: #f8f5ee;
+  --muted: #e7e4da;
+  --muted-foreground: #616653;
+  --border: #d2d1c5;
+}
+.light .navigation {
+  background: #f4f1e9e8;
+  border-color: var(--border);
+}
+.light .nav-links a,
+.light .nav-contact {
+  color: #373e2e;
+  border-color: #8b917f;
+}
+.light .nav-links a:hover {
+  color: var(--primary);
+}
+.light .hero {
+  background: #e5e1d7;
+}
+.light .hero-photo img {
+  filter: saturate(0.55) brightness(0.96);
+}
+.light .hero-shade {
+  background:
+    linear-gradient(
+      90deg,
+      #f4f1e9 0%,
+      #f4f1e9f5 24%,
+      #f4f1e9bb 43%,
+      #f4f1e908 75%
+    ),
+    linear-gradient(0deg, #f4f1e9 0%, transparent 36%);
+}
+.light h1 em,
+.light h2 em,
+.light .journal blockquote em,
+.light .contact-star,
+.light .discipline-strip b {
+  color: var(--primary);
+}
+.light .eyebrow,
+.light .hero-statement,
+.light .hero-bottom,
+.light .discipline-strip,
+.light .about-copy > p:not(.large-copy),
+.light .section-note,
+.light .section-note span,
+.light .project-meta,
+.light .project-card p,
+.light .work-footnote,
+.light .concept-number,
+.light .concept-list p,
+.light .concept-status,
+.light .certificate-number,
+.light .certificate-row p,
+.light .certificate-date,
+.light .journal-label small,
+.light .contact-notice,
+.light .contact-form label,
+.light .form-note,
+.light .footer,
+.light .observatory-title > p:last-child {
+  color: var(--muted-foreground);
+}
+.light .hero-side {
+  color: #f8f5ec;
+  text-shadow: 0 1px 5px #000;
+}
+.light .muted {
+  color: var(--muted-foreground) !important;
+}
+.light .primary-link,
+.light .brief-submit {
+  background: #353e2c !important;
+  color: #fffdf5 !important;
+}
+.light .primary-link:hover,
+.light .brief-submit:hover {
+  background: #505d42 !important;
+}
+.light .filter {
+  color: #5c634f !important;
+}
+.light .filter.active {
+  background: #353e2c !important;
+  color: #fffdf5 !important;
+}
+.light .creative,
+.light .journal {
+  background: #e9e8dd;
+}
+.light .concept-list > a,
+.light .storyboard > div {
+  border-color: var(--border);
+}
+.light .concept-list > a > svg,
+.light .footer > div > span {
+  color: var(--foreground);
+}
+.light .certificate-row:hover {
+  background: #e7e6da;
+}
+.light .certificate-row > img {
+  background: #e4e3d8;
+}
+.light .observatory {
+  background: #e5e8df;
+}
+.light .observatory-tabs button {
+  color: #57644c;
+}
+.light .observatory-tabs button.active {
+  color: #303b28;
+  border-color: var(--primary);
+}
+/* Photographic overlays retain a high-contrast cinematic treatment. */
+.light .concept-tag,
+.light .image-arrow,
+.light .play-indicator,
+.light .observatory-scene {
+  color: #eeece4;
+}
+.light .scene-copy .eyebrow {
+  color: #c6cbbb;
+}
+.light .contact-form input,
+.light .contact-form select,
+.light .contact-form textarea {
+  color: var(--foreground);
+  border-color: #9da58e;
+}
+.light .contact-form select option {
+  background: var(--background);
+  color: var(--foreground);
+}
+.light .project-dialog,
+.light .certificate-dialog {
+  background: var(--popover) !important;
+  color: var(--foreground) !important;
+}
+.light .project-dialog [data-slot='dialog-description'],
+.light .certificate-dialog [data-slot='dialog-description'],
+.light .case-copy > p:not(.eyebrow),
+.light .storyboard span {
+  color: var(--muted-foreground);
+}
+.light .film-placeholder {
+  background: var(--muted);
+  color: #46503a;
+}
+.light a:focus-visible,
+.light button:focus-visible,
+.light input:focus-visible,
+.light select:focus-visible,
+.light textarea:focus-visible {
+  outline-color: #75613a;
+}
+@media (max-width: 1050px) {
+  .nav-actions {
+    gap: 14px;
+  }
+  .nav-links {
+    gap: 18px;
+  }
+}
+@media (max-width: 640px) {
+  .nav-actions {
+    gap: 12px;
+  }
+  .theme-toggle {
+    height: 38px;
+    padding: 0 10px;
+  }
+  .light .nav-links.is-open {
+    background: #f4f1e9;
+    border-bottom: 1px solid var(--border);
+  }
+  .light .hero-shade {
+    background:
+      linear-gradient(90deg, #f4f1e9c9, #f4f1e92b),
+      linear-gradient(0deg, #f4f1e9 1%, #f4f1e9db 43%, #f4f1e915 85%);
+  }
+}

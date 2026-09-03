@@ -28,3 +28,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+# Local history and generated deployment archives
+/.local-backups/
+/portfolio-site.tar.gz
