@@ -20,7 +20,7 @@ The light/dark switch remembers the selection in local storage. Contact remains 
 
 - Edit `app/content.ts` for projects, certificates, observatory studies, contact links and equipment.
 - The six supplied originals are preserved in `public/images`. The portrait is also served as an optimized WebP.
-- All four projects are expressly labelled creative concepts. Unsplash URLs are temporary moodboard references, not Hamza's work. Replace them with original images before presenting projects as completed work. Project dates are deliberately unspecified.
+- All four projects use Hamza's original work from the supplied archive and preserve its project/sub-series classification. Project dates remain unspecified.
 - Real contact and social information is empty. Only supplied links render. Without an email, the form downloads a text brief locally and does not transmit personal data. With an email, it opens a prefilled email draft; automatic delivery requires a backend/provider configuration.
 - The equipment section stays hidden until `profile.toolkit` contains real entries.
 - Biographical copy is in `app/portfolio.tsx`. Do not introduce unconfirmed location, experience, clients or equipment.

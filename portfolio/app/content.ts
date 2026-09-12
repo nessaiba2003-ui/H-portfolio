@@ -9,61 +9,199 @@ export const profile = {
   socials: [] as { name: string; url: string }[],
   toolkit: [] as { name: string; value: string }[],
 };
-const photo = (id: string) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1600&q=85`;
 export const projects = [
   {
     id: 'earth-sky',
     title: 'Between Earth & Sky',
     category: 'ASTROPHOTOGRAPHY / VISUAL STORYTELLING',
     tags: ['Astrophotography', 'Landscapes'],
-    image: photo('photo-1464822759023-fed622ff2c3b'),
-    alt: 'Mountain landscape used as a concept moodboard',
+    image: '/works/between-earth-sky-the-last-light-the-last-light.jpeg',
+    alt: 'The Last Light — original work by Hamza El Bahi',
     description:
       'A visual journey between the places we live and the universe above us.',
     approach:
-      'A proposed series of mountain silhouettes, moonlit horizons, and long exposures. The landscape anchors each frame; the sky opens it to something larger.',
-    frames: ['The last light', 'A quiet horizon', 'Under the stars'],
+      'An original series moving from the final glow of day to quiet horizons and the stars above.',
+    groups: [
+      {
+        title: 'The Last Light',
+        items: [
+          {
+            src: '/works/between-earth-sky-the-last-light-the-last-light.jpeg',
+            type: 'image',
+          },
+        ],
+      },
+      {
+        title: 'A Quiet Horizon',
+        items: [
+          {
+            src: '/works/between-earth-sky-a-quiet-horison-a-quiet-horizon.jpg',
+            type: 'image',
+          },
+          {
+            src: '/works/between-earth-sky-a-quiet-horison-a-quiet-horizon-2.jpeg',
+            type: 'image',
+          },
+        ],
+      },
+      {
+        title: 'Under the Stars',
+        items: [
+          {
+            src: '/works/between-earth-sky-under-the-stars-under-the-stars.jpg',
+            type: 'image',
+          },
+        ],
+      },
+    ],
   },
   {
     id: 'moment',
     title: 'Frames of a Moment',
     category: 'PHOTOGRAPHY / PORTRAITS',
     tags: ['Photography', 'Portraits', 'Events'],
-    image: photo('photo-1472396961693-142e6e269027'),
-    alt: 'Deer in a sunlit forest, a temporary natural-light moodboard',
+    image: '/works/frames-of-a-moment-observe-observe-1.jpeg',
+    alt: 'Observe — original work by Hamza El Bahi',
     description: 'Everyday moments, seen in a different light.',
     approach:
-      'An intimate photographic concept exploring emotion, natural light, and human stories. These temporary moodboard images establish atmosphere; Hamza’s original portraits will replace them.',
-    frames: ['Observe', 'Find the light', 'Hold the moment'],
+      'An original photographic series exploring observation, light, and the moments that remain.',
+    groups: [
+      {
+        title: 'Observe',
+        items: [
+          {
+            src: '/works/frames-of-a-moment-observe-observe-1.jpeg',
+            type: 'image',
+          },
+          {
+            src: '/works/frames-of-a-moment-observe-observe-2.jpeg',
+            type: 'image',
+          },
+        ],
+      },
+      {
+        title: 'Find the Light',
+        items: [
+          {
+            src: '/works/frames-of-a-moment-find-the-light-find-the-light-1.jpg',
+            type: 'image',
+          },
+          {
+            src: '/works/frames-of-a-moment-find-the-light-find-the-light-2.jpg',
+            type: 'image',
+          },
+        ],
+      },
+      {
+        title: 'Hold the Moment',
+        items: [
+          {
+            src: '/works/frames-of-a-moment-hold-the-moment-hold-the-moment-1.jpg',
+            type: 'image',
+          },
+          {
+            src: '/works/frames-of-a-moment-hold-the-moment-hold-the-moment-2.jpg',
+            type: 'image',
+          },
+        ],
+      },
+    ],
   },
   {
     id: 'silence',
     title: 'Motion in Silence',
-    category: 'VIDEOGRAPHY / CINEMATOGRAPHY',
-    tags: ['Videography', 'Editing'],
-    image: photo('photo-1470071459604-3b5ec3a7fe05'),
-    alt: 'Misty hills used as a cinematic concept moodboard',
+    category: 'VISUAL STORYTELLING / CINEMATOGRAPHY',
+    tags: ['Cinematography', 'Editing'],
+    image: '/works/motion-in-silence-establishing-dawn-establishing-dawn.jpeg',
+    alt: 'Establishing Dawn — original work by Hamza El Bahi',
     description: 'A film imagined through movement, atmosphere, and light.',
     approach:
-      'A proposed dialogue-free short film, moving from a wide establishing shot to small details and a lingering final frame. Film footage, sound design, and behind-the-scenes material are still to come.',
-    frames: [
-      '01 / Establishing — dawn',
-      '02 / Detail — movement',
-      '03 / Closing — stillness',
+      'An original sequence where atmosphere, movement, and stillness shape the visual rhythm.',
+    groups: [
+      {
+        title: 'Establishing — Dawn',
+        items: [
+          {
+            src: '/works/motion-in-silence-establishing-dawn-establishing-dawn.jpeg',
+            type: 'image',
+          },
+        ],
+      },
+      {
+        title: 'Detail — Movement',
+        items: [
+          {
+            src: '/works/motion-in-silence-detail-mouvement-detail-movement.jpg',
+            type: 'image',
+          },
+          ...[1, 2, 3, 4, 5].map((n) => ({
+            src: `/works/motion-in-silence-detail-mouvement-detail-movement-${n}.jpg`,
+            type: 'image',
+          })),
+        ],
+      },
+      {
+        title: 'Closing — Stillness',
+        items: [
+          {
+            src: '/works/motion-in-silence-closing-stillness-closing-stillness.jpg',
+            type: 'image',
+          },
+          ...[1, 2, 3, 4, 5, 6, 7, 8].map((n) => ({
+            src: `/works/motion-in-silence-closing-stillness-closing-stillness-${n}.jpg`,
+            type: 'image',
+          })),
+        ],
+      },
     ],
   },
   {
     id: 'cosmic',
     title: 'Cosmic Frames',
-    category: 'ASTRONOMY / PHOTOGRAPHY / DIGITAL ART',
+    category: 'ASTRONOMER / PHOTOGRAPHY / DIGITAL ART',
     tags: ['Astrophotography', 'Editing'],
-    image: photo('photo-1462331940025-496dfbfc7564'),
-    alt: 'Nebula imagery used as an astronomy concept reference',
+    image: '/works/cosmic-frames-lunar-texture-lunar-texture.jpeg',
+    alt: 'Lunar Texture — original work by Hamza El Bahi',
     description: 'An experiment at the edge of science and imagination.',
     approach:
-      'A proposed exploration of lunar textures, distant light, and abstract cosmic compositions. Astronomy becomes the starting point for a visual language shaped by photography and digital editing.',
-    frames: ['Lunar texture', 'Distant light', 'Cosmic abstraction'],
+      'An original exploration of lunar textures, distant light, and cosmic abstraction.',
+    groups: [
+      {
+        title: 'Lunar Texture',
+        items: [
+          {
+            src: '/works/cosmic-frames-lunar-texture-lunar-texture.jpeg',
+            type: 'image',
+          },
+          {
+            src: '/works/cosmic-frames-lunar-texture-lunar-texture-1.jpeg',
+            type: 'image',
+          },
+          {
+            src: '/works/cosmic-frames-lunar-texture-lunar-texture-2.jpeg',
+            type: 'image',
+          },
+        ],
+      },
+      {
+        title: 'Distant Light',
+        items: [
+          {
+            src: '/works/cosmic-frames-distant-light-distant-light.jpeg',
+            type: 'image',
+          },
+        ],
+      },
+      {
+        title: 'Cosmic Abstraction',
+        items: [
+          {
+            src: '/works/cosmic-frames-cosmic-abstraction-cosmic-abstraction.mp4',
+            type: 'video',
+          },
+        ],
+      },
+    ],
   },
 ];
 export const certificates = [
@@ -114,34 +252,27 @@ export const observatory = [
     label: 'OUR NEAREST NIGHTTIME COMPANION',
     title: 'A study in light & shadow.',
     text: 'Across its phases, the Moon offers a changing landscape of contrast. A visual invitation to slow down and look closer.',
-    image: photo('photo-1446776811953-b23d57bd21aa'),
+    image: '/works/cosmic-frames-lunar-texture-lunar-texture.jpeg',
   },
   {
     name: 'Stars',
     label: 'DISTANT LIGHT',
     title: 'Every point, a possibility.',
     text: 'An exploration of starlight, patterns, and the quiet scale of the universe.',
-    image: photo('photo-1462331940025-496dfbfc7564'),
-  },
-  {
-    name: 'Planets',
-    label: 'WORLDS BEYOND OUR OWN',
-    title: 'Another world to imagine.',
-    text: 'The planets invite a different perspective on our place in space. This visual study is a moodboard; planetary photographs are still to come.',
-    image: photo('photo-1446776811953-b23d57bd21aa'),
+    image: '/works/between-earth-sky-under-the-stars-under-the-stars.jpg',
   },
   {
     name: 'Night sky',
     label: 'AFTER THE LAST LIGHT',
     title: 'Let the darkness speak.',
     text: 'A horizon, a little patience, and an open sky. Discover the atmosphere behind a future night-sky series.',
-    image: photo('photo-1470071459604-3b5ec3a7fe05'),
+    image: '/works/between-earth-sky-a-quiet-horison-a-quiet-horizon-2.jpeg',
   },
   {
     name: 'Astrophotography',
     label: 'LIGHT, COLLECTED OVER TIME',
     title: 'Beyond what the eye can see.',
     text: 'A creative meeting of observation and image-making. Long exposures turn faint light into a new way of seeing.',
-    image: photo('photo-1462331940025-496dfbfc7564'),
+    image: '/works/cosmic-frames-distant-light-distant-light.jpeg',
   },
 ];

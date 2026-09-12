@@ -94,9 +94,9 @@
 .light .project-meta,
 .light .project-card p,
 .light .work-footnote,
-.light .concept-number,
-.light .concept-list p,
-.light .concept-status,
+.light .series-number,
+.light .series-list p,
+.light .series-status,
 .light .certificate-number,
 .light .certificate-row p,
 .light .certificate-date,
@@ -135,11 +135,12 @@
 .light .journal {
   background: #e9e8dd;
 }
-.light .concept-list > a,
+.light .series-list > a,
+.light .work-group h5,
 .light .storyboard > div {
   border-color: var(--border);
 }
-.light .concept-list > a > svg,
+.light .series-list > a > svg,
 .light .footer > div > span {
   color: var(--foreground);
 }
@@ -160,7 +161,7 @@
   border-color: var(--primary);
 }
 /* Photographic overlays retain a high-contrast cinematic treatment. */
-.light .concept-tag,
+.light .original-tag,
 .light .image-arrow,
 .light .play-indicator,
 .light .observatory-scene {

@@ -83,7 +83,7 @@ export default function Portfolio() {
               </span>
             </h1>
             <p className="hero-disciplines">
-              PHOTOGRAPHER <i /> VIDEOGRAPHER <i /> ASTRONOMY
+              PHOTOGRAPHER <i /> VIDEASTER <i /> ASTRONOMER
             </p>
             <p className="hero-statement">
               Through a lens, I capture moments.
@@ -115,7 +115,7 @@ export default function Portfolio() {
           <b>✦</b>
           <span>CINEMATOGRAPHY</span>
           <b>✦</b>
-          <span>ASTRONOMY</span>
+          <span>ASTRONOMER</span>
           <b>✦</b>
         </div>
         <section id="about" className="section about">
@@ -145,7 +145,7 @@ export default function Portfolio() {
             </p>
             <div className="specialties">
               <span>01 — Photography</span>
-              <span>02 — Videography</span>
+              <span>02 — Videaster</span>
               <span>03 — Astrophotography</span>
               <span>04 — Visual editing</span>
             </div>
@@ -161,7 +161,7 @@ export default function Portfolio() {
       <footer className="footer">
         <div>
           <span>HAMZA EL BAHI</span>
-          <p>Photographer · Videographer · Astronomy</p>
+          <p>Photographer · Videaster · Astronomer</p>
           <p>Capturing Earth. Exploring the sky.</p>
         </div>
         <span>© 2026 Hamza El Bahi. All rights reserved.</span>

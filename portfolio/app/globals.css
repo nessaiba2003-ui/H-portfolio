@@ -573,7 +573,7 @@ h2 em {
   transform: scale(1.045);
   filter: saturate(0.8) brightness(0.95);
 }
-.concept-tag {
+.original-tag {
   position: absolute;
   left: 18px;
   top: 18px;
@@ -652,7 +652,7 @@ h2 em {
   background: #181c16;
   max-width: none;
 }
-.concept-list > a {
+.series-list > a {
   display: flex;
   align-items: center;
   gap: 30px;
@@ -660,33 +660,33 @@ h2 em {
   padding: 28px 0;
   transition: padding 0.3s;
 }
-.concept-list > a:hover {
+.series-list > a:hover {
   padding-left: 10px;
 }
-.concept-number {
+.series-number {
   font-family: Georgia, serif;
   color: #999f8b;
   font-size: 17px;
   width: 35px;
 }
-.concept-list h3 {
+.series-list h3 {
   font-family: Georgia, serif;
   font-weight: 400;
   font-size: 30px;
   margin: 0 0 6px;
 }
-.concept-list p {
+.series-list p {
   color: #a6ac9b;
   font-size: 12px;
 }
-.concept-status {
+.series-status {
   margin-left: auto;
   font-size: 8px;
   letter-spacing: 1.2px;
   color: #a6ac9b;
   white-space: nowrap;
 }
-.concept-list > a > svg {
+.series-list > a > svg {
   margin-left: 30px;
   color: #c7cdb9;
   flex-shrink: 0;
@@ -1049,6 +1049,37 @@ h2 em {
   align-items: center;
   color: #bdc7af;
 }
+.original-series {
+  display: grid;
+  gap: 52px;
+  margin-top: 45px;
+}
+.work-group h5 {
+  margin: 0 0 18px;
+  padding-bottom: 13px;
+  border-bottom: 1px solid #4c5642;
+  font-family: Georgia, serif;
+  font-size: 23px;
+  font-weight: 400;
+}
+.work-group-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.work-group-grid img,
+.work-group-grid video {
+  width: 100%;
+  height: 330px;
+  display: block;
+  object-fit: cover;
+  background: #0d100c;
+}
+.work-group-grid > :only-child {
+  grid-column: 1 / -1;
+  height: min(68vh, 650px);
+  object-fit: contain;
+}
 .certificate-dialog > img {
   width: 100%;
   height: auto;
@@ -1111,7 +1142,7 @@ h2 em {
   .section-heading {
     align-items: flex-start;
   }
-  .concept-list h3 {
+  .series-list h3 {
     font-size: 26px;
   }
 }
@@ -1153,24 +1184,24 @@ h2 em {
     font-size: 8px;
     line-height: 1.6;
   }
-  .concept-list > a {
+  .series-list > a {
     gap: 13px;
   }
-  .concept-number {
+  .series-number {
     width: 22px;
     font-size: 13px;
   }
-  .concept-list h3 {
+  .series-list h3 {
     font-size: 23px;
   }
-  .concept-list p {
+  .series-list p {
     font-size: 10px;
     line-height: 1.7;
   }
-  .concept-status {
+  .series-status {
     display: none;
   }
-  .concept-list > a > svg {
+  .series-list > a > svg {
     margin-left: auto;
     width: 18px;
   }
@@ -1276,6 +1307,17 @@ h2 em {
   .film-placeholder {
     padding: 20px;
     font-size: 12px;
+  }
+  .work-group-grid {
+    grid-template-columns: 1fr;
+  }
+  .work-group-grid img,
+  .work-group-grid video,
+  .work-group-grid > :only-child {
+    grid-column: auto;
+    height: auto;
+    max-height: 72vh;
+    object-fit: contain;
   }
   .footer {
     align-items: center;

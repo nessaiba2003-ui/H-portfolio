@@ -16,7 +16,7 @@ import { projects, certificates, observatory, profile } from './content';
 const filters = [
   'All',
   'Photography',
-  'Videography',
+  'Cinematography',
   'Astrophotography',
   'Portraits',
   'Landscapes',
@@ -38,9 +38,11 @@ export function Work() {
           </h2>
         </div>
         <p className="section-note">
-          A glimpse into a creative universe.
+          A curated selection from Hamza’s visual archive.
           <br />
-          <span>Concept projects · Temporary moodboard imagery</span>
+          <span>
+            The complete collection will connect to his photo database soon.
+          </span>
         </p>
       </div>
       <div className="filters" aria-label="Filter projects">
@@ -57,7 +59,7 @@ export function Work() {
         ))}
       </div>
       <p className="sr-only" aria-live="polite">
-        {shown.length} concept projects
+        {shown.length} original projects
       </p>
       <div className="project-gallery">
         {shown.map((p) => (
@@ -65,7 +67,7 @@ export function Work() {
             <Dialog>
               <DialogTrigger
                 className="project-open"
-                aria-label={`View concept project ${p.title}`}
+                aria-label={`View original project ${p.title}`}
               >
                 <div className="project-image">
                   <img
@@ -75,7 +77,7 @@ export function Work() {
                     width="1600"
                     height="1100"
                   />
-                  <span className="concept-tag">CREATIVE CONCEPT</span>
+                  <span className="original-tag">ORIGINAL WORK</span>
                   <span className="image-arrow">
                     <ArrowUpRight size={24} />
                   </span>
@@ -87,7 +89,7 @@ export function Work() {
                 </div>
                 <div className="project-meta">
                   <span>{p.category}</span>
-                  <span>CONCEPT / —</span>
+                  <span>ORIGINAL SERIES</span>
                 </div>
                 <h3>{p.title}</h3>
                 <p>{p.description}</p>
@@ -98,31 +100,41 @@ export function Work() {
               <DialogContent className="project-dialog">
                 <DialogTitle className="modal-title">{p.title}</DialogTitle>
                 <DialogDescription>
-                  Creative concept · Not a completed project by Hamza. Images
-                  are temporary visual references.
+                  Original work by Hamza El Bahi · {p.category}
                 </DialogDescription>
-                <img className="case-image" src={p.image} alt={p.alt} />
                 <div className="case-copy">
                   <p className="eyebrow">THE IDEA / {p.category}</p>
                   <h4>{p.description}</h4>
                   <p>{p.approach}</p>
-                  <div className="storyboard">
-                    {p.frames.map((frame, i) => (
-                      <div key={frame}>
-                        <span>0{i + 1}</span>
-                        <p>{frame}</p>
-                      </div>
+                  <div className="original-series">
+                    {p.groups.map((group) => (
+                      <section className="work-group" key={group.title}>
+                        <h5>{group.title}</h5>
+                        <div className="work-group-grid">
+                          {group.items.map((item, i) =>
+                            item.type === 'video' ? (
+                              <video
+                                key={item.src}
+                                controls
+                                playsInline
+                                preload="metadata"
+                                aria-label={`${group.title} — original video by Hamza El Bahi`}
+                              >
+                                <source src={item.src} type="video/mp4" />
+                              </video>
+                            ) : (
+                              <img
+                                key={item.src}
+                                src={item.src}
+                                alt={`${group.title} ${i + 1} — original work by Hamza El Bahi`}
+                                loading="lazy"
+                              />
+                            ),
+                          )}
+                        </div>
+                      </section>
                     ))}
                   </div>
-                  {p.id === 'silence' && (
-                    <div className="film-placeholder">
-                      <Play size={25} />
-                      <p>
-                        Film & behind-the-scenes footage coming with the
-                        original project.
-                      </p>
-                    </div>
-                  )}
                 </div>
               </DialogContent>
             </Dialog>
@@ -130,8 +142,8 @@ export function Work() {
         ))}
       </div>
       <div className="work-footnote">
-        <span>IMAGINED STORIES. FUTURE FRAMES.</span>
-        <span>Original work will be added here.</span>
+        <span>LIGHT. TIME. PERSPECTIVE.</span>
+        <span>Original work only.</span>
       </div>
     </section>
   );
@@ -147,20 +159,18 @@ export function Projects() {
           </h2>
         </div>
         <p className="section-note">
-          Four directions. One curious perspective.
-          <br />
-          These are concepts awaiting original work.
+          Four original series. One curious perspective.
         </p>
       </div>
-      <div className="concept-list">
+      <div className="series-list">
         {projects.map((p, i) => (
           <a href="#work" key={p.id}>
-            <span className="concept-number">0{i + 1}</span>
+            <span className="series-number">0{i + 1}</span>
             <div>
               <h3>{p.title}</h3>
               <p>{p.description}</p>
             </div>
-            <span className="concept-status">IN CONCEPT</span>
+            <span className="series-status">ORIGINAL WORK</span>
             <ArrowUpRight size={24} />
           </a>
         ))}
@@ -197,17 +207,17 @@ export function Observatory() {
         <img
           key={current.name}
           src={current.image}
-          alt={`Temporary space and nature moodboard for ${current.name}`}
+          alt={`${current.name} — original work by Hamza El Bahi`}
           loading="lazy"
         />
         <div className="scene-shade" />
-        <span className="scene-index">OBSERVATION 0{index + 1} / 05</span>
+        <span className="scene-index">OBSERVATION 0{index + 1} / 04</span>
         <div className="scene-copy">
           <p className="eyebrow">{current.label}</p>
           <h3>{current.title}</h3>
           <p>{current.text}</p>
         </div>
-        <span className="scene-credit">VISUAL STUDY · REFERENCE IMAGERY</span>
+        <span className="scene-credit">ORIGINAL WORK · HAMZA EL BAHI</span>
       </div>
     </section>
   );
@@ -226,7 +236,7 @@ export function Certificates() {
         </div>
         <p className="section-note">
           Certificates & participation
-          <br />A journey through astronomy and entrepreneurship.
+          <br />A journey through his work as an astronomer and entrepreneur.
         </p>
       </div>
       <div className="certificate-list">
@@ -388,7 +398,7 @@ export function Contact() {
             </option>
             {[
               'Photography',
-              'Videography',
+              'Video production',
               'Astrophotography',
               'Event',
               'Portrait',
