@@ -1,4 +1,6 @@
 import Portfolio from './portfolio';
-export default function Page() {
-  return <Portfolio />;
+import { getPortfolioData } from './albatros';
+export default async function Page() {
+  const portfolio = await getPortfolioData();
+  return <Portfolio portfolio={portfolio} />;
 }

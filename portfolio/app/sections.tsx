@@ -11,20 +11,21 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { projects, certificates, observatory, profile } from './content';
+import { certificates, observatory, profile } from './content';
+import type { PortfolioProjectView } from './content';
 
-const filters = [
-  'All',
-  'Photography',
-  'Cinematography',
-  'Astrophotography',
-  'Portraits',
-  'Landscapes',
-  'Events',
-  'Editing',
-];
-export function Work() {
+export function Work({
+  projects,
+  error,
+}: {
+  projects: PortfolioProjectView[];
+  error?: string;
+}) {
   const [filter, setFilter] = useState('All');
+  const filters = [
+    'All',
+    ...Array.from(new Set(projects.flatMap((project) => project.tags))),
+  ];
   const shown = projects.filter(
     (p) => filter === 'All' || p.tags.includes(filter),
   );
@@ -45,6 +46,12 @@ export function Work() {
           </span>
         </p>
       </div>
+      {error && (
+        <div className="archive-status" role="status">
+          <span>ALBATROS CONNECTION</span>
+          <p>{error} Showing the curated local archive.</p>
+        </div>
+      )}
       <div className="filters" aria-label="Filter projects">
         {filters.map((item) => (
           <Button
@@ -61,86 +68,107 @@ export function Work() {
       <p className="sr-only" aria-live="polite">
         {shown.length} original projects
       </p>
-      <div className="project-gallery">
-        {shown.map((p) => (
-          <article className="project-card" key={p.id}>
-            <Dialog>
-              <DialogTrigger
-                className="project-open"
-                aria-label={`View original project ${p.title}`}
-              >
-                <div className="project-image">
-                  <img
-                    src={p.image}
-                    alt={p.alt}
-                    loading="lazy"
-                    width="1600"
-                    height="1100"
-                  />
-                  <span className="original-tag">ORIGINAL WORK</span>
-                  <span className="image-arrow">
-                    <ArrowUpRight size={24} />
-                  </span>
-                  {p.id === 'silence' && (
-                    <span className="play-indicator">
-                      <Play size={18} />
+      {shown.length === 0 ? (
+        <div className="archive-empty">
+          <span>✦</span>
+          <h3>No public work in this category yet.</h3>
+          <p>
+            Projects published from the ALBATROS dashboard will appear here
+            automatically.
+          </p>
+        </div>
+      ) : (
+        <div className="project-gallery">
+          {shown.map((p) => (
+            <article className="project-card" key={p.id}>
+              <Dialog>
+                <DialogTrigger
+                  className="project-open"
+                  aria-label={`View original project ${p.title}`}
+                >
+                  <div className="project-image">
+                    {p.image ? (
+                      <img
+                        src={p.image}
+                        alt={p.alt}
+                        loading="lazy"
+                        width="1600"
+                        height="1100"
+                      />
+                    ) : (
+                      <div className="project-image-empty">
+                        <span>HE</span>
+                        <p>Media managed in ALBATROS</p>
+                      </div>
+                    )}
+                    <span className="original-tag">ORIGINAL WORK</span>
+                    <span className="image-arrow">
+                      <ArrowUpRight size={24} />
                     </span>
-                  )}
-                </div>
-                <div className="project-meta">
-                  <span>{p.category}</span>
-                  <span>ORIGINAL SERIES</span>
-                </div>
-                <h3>{p.title}</h3>
-                <p>{p.description}</p>
-                <span className="view-project">
-                  VIEW PROJECT <ArrowUpRight size={13} />
-                </span>
-              </DialogTrigger>
-              <DialogContent className="project-dialog">
-                <DialogTitle className="modal-title">{p.title}</DialogTitle>
-                <DialogDescription>
-                  Original work by Hamza El Bahi · {p.category}
-                </DialogDescription>
-                <div className="case-copy">
-                  <p className="eyebrow">THE IDEA / {p.category}</p>
-                  <h4>{p.description}</h4>
-                  <p>{p.approach}</p>
-                  <div className="original-series">
-                    {p.groups.map((group) => (
-                      <section className="work-group" key={group.title}>
-                        <h5>{group.title}</h5>
-                        <div className="work-group-grid">
-                          {group.items.map((item, i) =>
-                            item.type === 'video' ? (
-                              <video
-                                key={item.src}
-                                controls
-                                playsInline
-                                preload="metadata"
-                                aria-label={`${group.title} — original video by Hamza El Bahi`}
-                              >
-                                <source src={item.src} type="video/mp4" />
-                              </video>
-                            ) : (
-                              <img
-                                key={item.src}
-                                src={item.src}
-                                alt={`${group.title} ${i + 1} — original work by Hamza El Bahi`}
-                                loading="lazy"
-                              />
-                            ),
-                          )}
-                        </div>
-                      </section>
-                    ))}
+                    {p.id === 'silence' && (
+                      <span className="play-indicator">
+                        <Play size={18} />
+                      </span>
+                    )}
                   </div>
-                </div>
-              </DialogContent>
-            </Dialog>
-          </article>
-        ))}
-      </div>
+                  <div className="project-meta">
+                    <span>{p.category}</span>
+                    <span>
+                      {p.featured ? 'FEATURED' : p.year || 'ORIGINAL SERIES'}
+                    </span>
+                  </div>
+                  <h3>{p.title}</h3>
+                  <p>{p.description}</p>
+                  <span className="view-project">
+                    VIEW PROJECT <ArrowUpRight size={13} />
+                  </span>
+                </DialogTrigger>
+                <DialogContent className="project-dialog">
+                  <DialogTitle className="modal-title">{p.title}</DialogTitle>
+                  <DialogDescription>
+                    Original work by Hamza El Bahi · {p.category}
+                    {p.location ? ` · ${p.location}` : ''}
+                  </DialogDescription>
+                  <div className="case-copy">
+                    <p className="eyebrow">THE IDEA / {p.category}</p>
+                    <h4>{p.description}</h4>
+                    <p>{p.approach}</p>
+                    <div className="original-series">
+                      {p.groups.map((group) => (
+                        <section className="work-group" key={group.title}>
+                          <h5>{group.title}</h5>
+                          <div className="work-group-grid">
+                            {group.items.map((item, i) =>
+                              item.type === 'video' ? (
+                                <video
+                                  key={item.src}
+                                  controls
+                                  playsInline
+                                  preload="metadata"
+                                  aria-label={`${group.title} — original video by Hamza El Bahi`}
+                                >
+                                  <source src={item.src} type="video/mp4" />
+                                </video>
+                              ) : (
+                                <img
+                                  key={item.src}
+                                  src={item.src}
+                                  alt={`${group.title} ${i + 1} — original work by Hamza El Bahi`}
+                                  loading="lazy"
+                                />
+                              ),
+                            )}
+                          </div>
+                        </section>
+                      ))}
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </article>
+          ))}
+        </div>
+      )}
       <div className="work-footnote">
         <span>LIGHT. TIME. PERSPECTIVE.</span>
         <span>Original work only.</span>
@@ -148,7 +176,7 @@ export function Work() {
     </section>
   );
 }
-export function Projects() {
+export function Projects({ projects }: { projects: PortfolioProjectView[] }) {
   return (
     <section id="projects" className="section creative">
       <div className="section-heading">

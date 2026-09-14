@@ -3,6 +3,7 @@ import { ArrowUpRight, ArrowDown, Aperture, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import ThemeToggle from './theme-toggle';
+import type { PortfolioData } from './albatros';
 import {
   Work,
   Projects,
@@ -19,7 +20,7 @@ const navigation = [
   'Certificates',
   'Contact',
 ];
-export default function Portfolio() {
+export default function Portfolio({ portfolio }: { portfolio: PortfolioData }) {
   const [menu, setMenu] = useState(false);
   return (
     <>
@@ -151,8 +152,8 @@ export default function Portfolio() {
             </div>
           </div>
         </section>
-        <Work />
-        <Projects />
+        <Work projects={portfolio.projects} error={portfolio.error} />
+        <Projects projects={portfolio.projects} />
         <Observatory />
         <Certificates />
         <Journal />

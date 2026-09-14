@@ -1,3 +1,20 @@
+export type WorkMedia = { src: string; type: 'image' | 'video'; alt?: string };
+export type WorkGroup = { title: string; items: WorkMedia[] };
+export type PortfolioProjectView = {
+  id: string;
+  title: string;
+  category: string;
+  tags: string[];
+  image: string;
+  alt: string;
+  description: string;
+  approach: string;
+  groups: WorkGroup[];
+  featured?: boolean;
+  year?: string;
+  location?: string;
+};
+
 // Replace these values with Hamza's confirmed information. Empty values stay hidden.
 export const profile = {
   bio: '',
@@ -9,7 +26,7 @@ export const profile = {
   socials: [] as { name: string; url: string }[],
   toolkit: [] as { name: string; value: string }[],
 };
-export const projects = [
+export const projects: PortfolioProjectView[] = [
   {
     id: 'earth-sky',
     title: 'Between Earth & Sky',
@@ -27,7 +44,7 @@ export const projects = [
         items: [
           {
             src: '/works/between-earth-sky-the-last-light-the-last-light.jpeg',
-            type: 'image',
+            type: 'image' as const,
           },
         ],
       },
@@ -36,7 +53,7 @@ export const projects = [
         items: [
           {
             src: '/works/between-earth-sky-a-quiet-horison-a-quiet-horizon.jpg',
-            type: 'image',
+            type: 'image' as const,
           },
           {
             src: '/works/between-earth-sky-a-quiet-horison-a-quiet-horizon-2.jpeg',
@@ -136,7 +153,7 @@ export const projects = [
           },
           ...[1, 2, 3, 4, 5].map((n) => ({
             src: `/works/motion-in-silence-detail-mouvement-detail-movement-${n}.jpg`,
-            type: 'image',
+            type: 'image' as const,
           })),
         ],
       },
@@ -149,7 +166,7 @@ export const projects = [
           },
           ...[1, 2, 3, 4, 5, 6, 7, 8].map((n) => ({
             src: `/works/motion-in-silence-closing-stillness-closing-stillness-${n}.jpg`,
-            type: 'image',
+            type: 'image' as const,
           })),
         ],
       },

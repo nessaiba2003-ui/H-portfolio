@@ -31,3 +31,4 @@ bin/
 # Local history and generated deployment archives
 /.local-backups/
 /portfolio-site.tar.gz
+!**/.env.example
