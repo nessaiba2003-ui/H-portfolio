@@ -29,11 +29,11 @@ export type PortfolioData = {
 function cleanText(value: unknown, fallback = ''): string {
   return typeof value === 'string' ? value.trim() : fallback;
 }
-function mediaUrl(value: unknown, apiBase: URL): string {
+function mediaUrl(value: unknown, mediaBase: URL): string {
   const raw = cleanText(value);
   if (!raw) return '';
   try {
-    const resolved = new URL(raw, `${apiBase.origin}/`);
+    const resolved = new URL(raw, `${mediaBase.origin}/`);
     return ['http:', 'https:'].includes(resolved.protocol)
       ? resolved.toString()
       : '';
@@ -41,11 +41,11 @@ function mediaUrl(value: unknown, apiBase: URL): string {
     return '';
   }
 }
-function mapMedia(media: AlbatrosMedia[], apiBase: URL): WorkMedia[] {
+function mapMedia(media: AlbatrosMedia[], mediaBase: URL): WorkMedia[] {
   return [...media]
     .sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0))
     .flatMap((item) => {
-      const src = mediaUrl(item.url, apiBase);
+      const src = mediaUrl(item.url, mediaBase);
       if (!src) return [];
       return [
         {
@@ -61,14 +61,14 @@ function mapMedia(media: AlbatrosMedia[], apiBase: URL): WorkMedia[] {
 }
 function mapProject(
   project: AlbatrosProject,
-  apiBase: URL,
+  mediaBase: URL,
 ): PortfolioProjectView | null {
   const title = cleanText(project.title);
   if (!title || project.id == null) return null;
   const category = cleanText(project.category, 'Uncategorized');
   const media = mapMedia(
     Array.isArray(project.media) ? project.media : [],
-    apiBase,
+    mediaBase,
   );
   const description = cleanText(
     project.description,
@@ -80,7 +80,7 @@ function mapProject(
     category,
     tags: [category],
     image:
-      mediaUrl(project.coverImageUrl, apiBase) ||
+      mediaUrl(project.coverImageUrl, mediaBase) ||
       media.find((item) => item.type === 'image')?.src ||
       '',
     alt: `${title} — original work by Hamza El Bahi`,
@@ -104,6 +104,11 @@ export async function getPortfolioData(): Promise<PortfolioData> {
     const apiBase = new URL(configuredBase);
     if (!['http:', 'https:'].includes(apiBase.protocol))
       throw new Error('Unsupported API protocol');
+    const configuredMediaBase =
+      process.env.ALBATROS_MEDIA_BASE_URL?.trim() || apiBase.origin;
+    const mediaBase = new URL(configuredMediaBase);
+    if (!['http:', 'https:'].includes(mediaBase.protocol))
+      throw new Error('Unsupported media protocol');
     const endpoint = new URL(
       `${apiBase.pathname.replace(/\/$/, '')}/public/portfolio`,
       apiBase.origin,
@@ -119,7 +124,7 @@ export async function getPortfolioData(): Promise<PortfolioData> {
     if (!Array.isArray(payload))
       throw new Error('Invalid ALBATROS portfolio response');
     const projects = payload
-      .map((item) => mapProject(item as AlbatrosProject, apiBase))
+      .map((item) => mapProject(item as AlbatrosProject, mediaBase))
       .filter((item): item is PortfolioProjectView => item !== null)
       .sort(
         (a, b) =>

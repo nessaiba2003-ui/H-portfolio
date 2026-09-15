@@ -6,10 +6,11 @@ Responsive cinematic portfolio built with React and Next.js. Its visual identity
 
 `npm install`, then `npm run dev`. Production: `npm run build`.
 
-Create `.env.local` from `.env.example` and set the ALBATROS backend URL:
+Create `.env.local` from `.env.example` and set the ALBATROS backend and media origins:
 
 ```env
-ALBATROS_API_BASE_URL=https://your-albatros-backend-url.com/api
+ALBATROS_API_BASE_URL=https://albatros-api-production.up.railway.app/api
+ALBATROS_MEDIA_BASE_URL=https://photo-five-delta.vercel.app
 ```
 
 This is a server-side variable. Do not rename it with a `NEXT_PUBLIC_` prefix.
@@ -22,11 +23,11 @@ The H-portfolio code never calls `/api/admin/*`, sends an authorization header, 
 
 If the public endpoint is unavailable or misconfigured, H-portfolio shows the curated local projects from `app/content.ts` and a discreet status message. An available empty API response stays empty and does not trigger sample content.
 
-Relative media URLs returned by ALBATROS are resolved against the backend origin. Admin-uploaded `/uploads/*` files and absolute HTTPS media URLs are supported.
+Relative media URLs returned by ALBATROS are resolved against `ALBATROS_MEDIA_BASE_URL`. This is required for existing `/assets/*` records hosted by the ALBATROS frontend. Admin-uploaded absolute HTTPS media URLs are supported unchanged.
 
 ## Vercel
 
-Import the repository with Root Directory left at the repository root. The root `vercel.json` installs and builds the Next.js application in `portfolio`. If Root Directory is already `portfolio`, its own `vercel.json` provides the equivalent configuration. Set `ALBATROS_API_BASE_URL` for Production, Preview, and Development as needed.
+Set the Vercel Root Directory to `portfolio`; its `vercel.json` installs and builds the Next.js application. Set both `ALBATROS_API_BASE_URL` and `ALBATROS_MEDIA_BASE_URL` for Production, Preview, and Development.
 
 The `portfolio` folder must be regular tracked files, not a Git submodule/gitlink. The previous nested Git history is backed up locally under `.local-backups/portfolio.git` and is excluded from uploads.
 
